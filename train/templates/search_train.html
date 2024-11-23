@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block start %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Search Train</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="from">From</label>
+      <select name="departure" class="form-control" id="departure">
+        {% if departure_list %} {% for departure in departure_list %}
+        <option value="{{departure}}">{{departure}}</option>
+        {% endfor %} {% else %}
+        <option value="{{empty}}">None</option>
+        {% endif %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <select name="destination" class="form-control" id="destination">
+        {% if destination_list %} {% for destination in destination_list %}
+        <option value="{{destination}}">{{destination}}</option>
+        {% endfor %} {% else %}
+        <option value="{{empty}}">None</option>
+        {% endif %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search Train</button>
+  </form>
+</div>
+
+<div class="container mt-5">
+  <!-- Back Button and Departure-Destination Info -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center">From: {{departure}} - To: {{destination}}</h2>
+  </div>
+
+  <!-- Train List -->
+  <div class="row">
+    <div class="col-md-4 mb-4" id="train-template" style="display: none">
+      <div class="card">
+        <img src="" class="card-img-top train-image" alt="Train Image" />
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text">
+            <strong>Departure Time:</strong> <span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample Train Data -->
+    <!-- Replace this section with dynamic data from your backend -->
+
+    {% for train in train_list %}
+
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img
+          src="/media/{{ train.train_image }}"
+          class="card-img-top train-image"
+          alt="Train Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ train.train_name }}</h5>
+          <p class="card-text">
+            <strong>Departure Time:</strong> {{ train.departure_time }}
+          </p>
+          <a href="/update-train/{{train.id}}/" class="btn btn-primary"
+            >Update</a
+          >
+          <a href="/delete-train/{{train.id}}/" class="btn btn-danger ml-2"
+            >Delete</a
+          >
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <!-- Add more train cards as needed -->
+  </div>
+</div>
+{% endblock %}

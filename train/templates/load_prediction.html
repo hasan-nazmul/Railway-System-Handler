@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block start %}
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Load Prediction</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="departure">From</label>
+      <select name="departure" class="form-control" id="departure">
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chattogram">Chattogram</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barsal">Barsal</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Chandpur">Chandpur</option>
+        <option value="Cumilla">Cumilla</option>
+        <option value="Satkhira">Satkhira</option>
+        <option value="Jessore">Jessore</option>
+        <option value="Mymensingh">Mymensingh</option>
+        <option value="Narayanganj">Narayanganj</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Lalmonirhat">Lalmonirhat</option>
+        <option value="Magura">Magura</option>
+        <option value="Panchagarh">Panchagarh</option>
+        <option value="Shariatpur">Shariatpur</option>
+        <option value="Habiganj">Habiganj</option>
+        <option value="Moulvibazar">Moulvibazar</option>
+        <option value="Sunamganj">Sunamganj</option>
+        <option value="Kishoreganj">Kishoreganj</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <select name="destination" class="form-control" id="destination">
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chattogram">Chattogram</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Barsal">Barsal</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Chandpur">Chandpur</option>
+        <option value="Cumilla">Cumilla</option>
+        <option value="Satkhira">Satkhira</option>
+        <option value="Jessore">Jessore</option>
+        <option value="Mymensingh">Mymensingh</option>
+        <option value="Narayanganj">Narayanganj</option>
+        <option value="Rangpur">Rangpur</option>
+        <option value="Lalmonirhat">Lalmonirhat</option>
+        <option value="Magura">Magura</option>
+        <option value="Panchagarh">Panchagarh</option>
+        <option value="Shariatpur">Shariatpur</option>
+        <option value="Habiganj">Habiganj</option>
+        <option value="Moulvibazar">Moulvibazar</option>
+        <option value="Sunamganj">Sunamganj</option>
+        <option value="Kishoreganj">Kishoreganj</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" name="date" required />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Predict</button>
+  </form>
+  {% if result %}
+  <div id="prediction-result" class="alert alert-info mt-4">
+    Approximately {{result}} peoples may travel from {{departure}} to
+    {{destination}} during {{date}}.
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
