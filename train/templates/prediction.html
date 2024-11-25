@@ -3,20 +3,19 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Load Prediction Results</h2>
   <div id="result-display" class="alert alert-info">
-    <h4 class="alert-heading">Prediction Result</h4>
+    <!-- <hr /> -->
     <p id="prediction-text">
       Approximately {{result}} peoples may travel from {{departure}} to
       {{destination}} during {{date}}.
     </p>
-    <hr />
     <p class="mb-0" id="comment-text">
-      {%if result > 250%} This route is expected to be very crowded. Consider
+      {%if result > 200%} This route is expected to be very crowded. Consider
       booking early to secure your seat! <br /><span style="font-size: 100px"
         >🥵</span
       >
-      {%elif result > 200%} This route might be moderately crowded. Booking in
+      {%elif result > 180%} This route might be moderately crowded. Booking in
       advance is recommended. <br /><span style="font-size: 100px">😰</span>
-      {%elif result > 150%} This route is expected to have a light load. You
+      {%elif result > 160%} This route is expected to have a light load. You
       should have a comfortable journey. <br /><span style="font-size: 100px"
         >😊</span
       >
